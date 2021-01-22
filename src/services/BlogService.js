@@ -48,6 +48,12 @@ class BlogService {
     AppState.comments.push(res.data)
     this.getComments(commentData.blog)
   }
+
+  async deleteComment(id) {
+    await api.delete('api/comments/' + id)
+    const commId = AppState.comments.findIndex(c => c.id === id)
+    AppState.comments.splice(commId, 1)
+  }
 }
 
 export const blogService = new BlogService()

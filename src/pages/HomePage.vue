@@ -1,5 +1,8 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column container-fluid">
+    <h1 class="text-primary">
+      Today's Blogs:
+    </h1>
     <div class="row m-5">
       <BlogComponenet v-for="blog in state.blogs" :key="blog.id" :blog-prop="blog" />
     </div>

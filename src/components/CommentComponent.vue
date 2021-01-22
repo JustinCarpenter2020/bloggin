@@ -1,11 +1,10 @@
 <template>
   <div class="CommentComponent">
-    <h1>hellow comments</h1>
     <img v-if="commentProp.creator" class="avatar" :src="commentProp.creator.picture" alt="">
     <h2 v-if="commentProp.creator">
       {{ commentProp.creator.name }} | {{ commentProp.body }}
     </h2> <p class="text-right">
-      <i class="far fa-minus-square" v-if="state.account.id == commentProp.creatorId"></i>
+      <i class="far fa-minus-square text-danger pointer" @click="deleteComment" v-if="state.account.id == commentProp.creatorId"></i>
     </p>
   </div>
 </template>
@@ -13,6 +12,8 @@
 <script>
 import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
+import { blogService } from '../services/BlogService'
 export default {
   name: 'CommentComponent',
   props: { commentProp: { type: Object, required: true } },
@@ -21,7 +22,14 @@ export default {
       account: computed(() => AppState.account)
     })
     return {
-      state
+      state,
+      deleteComment() {
+        try {
+          blogService.deleteComment(props.commentProp.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
   },
   components: {}
@@ -32,5 +40,9 @@ export default {
 .avatar{
   border-radius: 50%;
 
+}
+
+.pointer{
+  cursor: pointer;
 }
 </style>

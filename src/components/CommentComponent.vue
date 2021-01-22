@@ -1,16 +1,25 @@
 <template>
   <div class="CommentComponent">
     <h1>hellow comments</h1>
-    <img class="avatar" :src="commentProp.creator.picture" alt=""><h2>{{ commentProp.creator.name }} | {{ commentProp.body }}</h2>
+    <img class="avatar" :src="commentProp.creator.picture" alt=""><h2>{{ commentProp.creator.name }} | {{ commentProp.body }}</h2> <p class="text-right">
+      <i class="far fa-minus-square" v-if="state.account.id == commentProp.creatorId"></i>
+    </p>
   </div>
 </template>
 
 <script>
+import { reactive, computed } from 'vue'
+import { AppState } from '../AppState'
 export default {
   name: 'CommentComponent',
   props: { commentProp: { type: Object, required: true } },
   setup(props) {
-    return {}
+    const state = reactive({
+      account: computed(() => AppState.account)
+    })
+    return {
+      state
+    }
   },
   components: {}
 }

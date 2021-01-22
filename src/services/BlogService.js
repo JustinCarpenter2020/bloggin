@@ -29,6 +29,18 @@ class BlogService {
     document.getElementById('comments').hidden = true
     document.getElementById('button').hidden = true
   }
+
+  async createBlog(blog) {
+    const res = await api.post('api/blogs/', blog)
+    AppState.blogs.push(res.data)
+    return res.data.id
+  }
+
+  async deleteBlog(id) {
+    await api.delete('api/blogs/' + id)
+    const blogInd = AppState.blogs.findIndex(b => b.id === id)
+    AppState.blogs.splice(blogInd, 1)
+  }
 }
 
 export const blogService = new BlogService()

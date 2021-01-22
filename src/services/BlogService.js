@@ -1,3 +1,4 @@
+
 import { AppState } from '../AppState'
 import { api } from '../services/AxiosService'
 
@@ -40,6 +41,12 @@ class BlogService {
     await api.delete('api/blogs/' + id)
     const blogInd = AppState.blogs.findIndex(b => b.id === id)
     AppState.blogs.splice(blogInd, 1)
+  }
+
+  async createComment(commentData) {
+    const res = await api.post('api/comments/', commentData)
+    AppState.comments.push(res.data)
+    this.getComments(commentData.blog)
   }
 }
 

@@ -36,6 +36,23 @@
         <div class="col-12">
           <CommentComponent v-for="comment in state.comments" :key="comment.blog.id" :comment-prop="comment" />
         </div>
+        <div class="col-12">
+          <form @submit.prevent="createComment" class="from-inline">
+            <div class="form-group">
+              <label for=""></label>
+              <input type="text"
+                     class="form-control"
+                     name="new Comment"
+                     v-model="state.newComment.body"
+                     aria-describedby="helpId"
+                     placeholder="New Comment"
+              >
+              <button type="submit" class="btn btn-success">
+                Post
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +70,8 @@ export default {
     const route = useRoute()
     const state = reactive({
       loaded: false,
-      comments: computed(() => AppState.comments)
+      comments: computed(() => AppState.comments),
+      newComment: { blog: route.params.id }
     })
     onMounted(async() => {
       try {
@@ -76,6 +94,14 @@ export default {
       hideComments() {
         try {
           blogService.hideComments()
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async createComment() {
+        try {
+          console.log(state.newComment)
+          blogService.createComment(state.newComment)
         } catch (error) {
           logger.error(error)
         }

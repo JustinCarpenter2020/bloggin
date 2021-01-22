@@ -1,7 +1,10 @@
 <template>
   <div class="CommentComponent">
     <h1>hellow comments</h1>
-    <img class="avatar" :src="commentProp.creator.picture" alt=""><h2>{{ commentProp.creator.name }} | {{ commentProp.body }}</h2> <p class="text-right">
+    <img v-if="commentProp.creator" class="avatar" :src="commentProp.creator.picture" alt="">
+    <h2 v-if="commentProp.creator">
+      {{ commentProp.creator.name }} | {{ commentProp.body }}
+    </h2> <p class="text-right">
       <i class="far fa-minus-square" v-if="state.account.id == commentProp.creatorId"></i>
     </p>
   </div>

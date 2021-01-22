@@ -34,7 +34,7 @@
       </div>
       <div hidden id="comments" class="row">
         <div class="col-12">
-          <CommentComponent v-for="comment in state.comments" :key="comment.blog.id" :comment-prop="comment" />
+          <CommentComponent v-for="comment in state.comments" :key="comment.blog" :comment-prop="comment" />
         </div>
         <div class="col-12">
           <form @submit.prevent="createComment" class="from-inline">

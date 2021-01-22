@@ -1,20 +1,97 @@
 <template>
-  <div class="BlogDetailsPage">
-    <h1>hii from details</h1>
-    <ActiveBlogComponenet />
+  <div class="BlogDetailsPage container-fluid">
+    <div class="row">
+      <div class="col-12">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <h1 class="pt-3">
+          <b>{{ blog.title }}</b>
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <img class="border" :src="blog.imgUrl" />
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-12 text-center">
+        <h5>
+          {{ blog.body }}
+        </h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center divide">
+        <button @click="revealComments" class="btn btn-danger">
+          Comments ↓
+        </button>
+        <button id="button" hidden @click="hideComments" class="btn btn-success ml-5">
+          hide Comments
+        </button>
+      </div>
+      <div hidden id="comments" class="row">
+        <div class="col-12">
+          <CommentComponent v-for="comment in state.comments" :key="comment.blog.id" :comment-prop="comment" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { onMounted, reactive, computed } from 'vue'
+import { blogService } from '../services/BlogService'
+import { useRoute } from 'vue-router'
+import { logger } from '../utils/Logger'
+import { AppState } from '../AppState'
 export default {
   name: 'BlogDetailsPage',
   setup() {
-    return {}
+    const route = useRoute()
+    const state = reactive({
+      loaded: false,
+      comments: computed(() => AppState.comments)
+    })
+    onMounted(async() => {
+      try {
+        await blogService.getOne(route.params.id)
+        await blogService.getComments(AppState.activeBlog.id)
+      } catch (error) {
+        logger.error(error)
+      }
+    })
+    return {
+      state,
+      blog: computed(() => AppState.activeBlog),
+      revealComments() {
+        try {
+          blogService.revealComments()
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      hideComments() {
+        try {
+          blogService.hideComments()
+        } catch (error) {
+          logger.error(error)
+        }
+      }
+    }
   },
   components: {}
 }
 </script>
 
 <style lang="scss" scoped>
+.border{
+  border: 10px groove #F4D47C;
+}
 
+.divide{
+  background-color: #082c6c;
+}
 </style>

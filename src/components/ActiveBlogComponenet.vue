@@ -1,13 +1,12 @@
 <template>
-  <div class="BlogDetailsPage">
-    <h1>hii from details</h1>
-    <ActiveBlogComponenet />
+  <div class="ActiveBlogComponenet">
+    <h1>Hello There Friend</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BlogDetailsPage',
+  name: 'ActiveBlogComponenet',
   setup() {
     return {}
   },

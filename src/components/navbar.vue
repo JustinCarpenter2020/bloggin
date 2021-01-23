@@ -1,12 +1,13 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
+        <h2>Coeus |</h2>
+        <!-- <img
           alt="logo"
-          src="../assets/img/cw-logo.png"
+          src="../assets/img/logo-2.png"
           height="45"
-        />
+        /> -->
       </div>
     </router-link>
     <button
@@ -24,7 +25,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
+            Blogs
           </router-link>
         </li>
         <li class="nav-item">

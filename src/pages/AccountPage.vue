@@ -85,6 +85,7 @@ export default {
   setup() {
     // const route = useRoute
     const state = reactive({
+      blogs: computed(() => AppState.blogs),
       newBlog: {}
     })
     // onMounted(async() => {

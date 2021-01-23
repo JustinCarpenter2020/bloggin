@@ -37,7 +37,7 @@
           <CommentComponent v-for="comment in state.comments" :key="comment.blog" :comment-prop="comment" />
         </div>
         <div class="col-12">
-          <form @submit.prevent="createComment" class="from-inline">
+          <form @submit.prevent="createComment" class="from-inline" v-if="state.user.isAuthenticated">
             <div class="form-group">
               <label for=""></label>
               <input type="text"
@@ -71,7 +71,8 @@ export default {
     const state = reactive({
       loaded: false,
       comments: computed(() => AppState.comments),
-      newComment: { blog: route.params.id }
+      newComment: { blog: route.params.id },
+      user: computed(() => AppState.user)
     })
     onMounted(async() => {
       try {

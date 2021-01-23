@@ -2,7 +2,7 @@
   <div class="BlogComponenet">
     <div class="col my-2">
       <div class="card border-primary ">
-        <div class="card-body">
+        <div class="card-body bg-secondary text-warning">
           <h4 class="card-title">
             <router-link :to="{
               name:

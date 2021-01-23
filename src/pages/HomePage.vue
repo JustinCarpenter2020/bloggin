@@ -1,6 +1,10 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column container-fluid">
-    <h1 class="text-primary">
+    <div class="row">
+      <div class="col-12">
+      </div>
+    </div>
+    <h1 class="text-success">
       Today's Blogs:
     </h1>
     <div class="row m-5">

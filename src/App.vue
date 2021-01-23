@@ -32,6 +32,6 @@ export default {
 @import "./assets/scss/main.scss";
 main {
   background-color:
-#444444;
+#12232E;
 }
 </style>

@@ -5,7 +5,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col text-center">
+      <div class="col text-center text-warning">
         <h1 class="pt-3">
           <b>{{ blog.title }}</b>
         </h1>
@@ -17,14 +17,14 @@
       </div>
     </div>
     <div class="row pt-3">
-      <div class="col-12 text-center">
+      <div class="col-12 text-center text-warning">
         <h5>
           {{ blog.body }}
         </h5>
       </div>
     </div>
     <div class="row">
-      <div class="col-12 text-center divide">
+      <div class="col-12 text-center divide pb-5">
         <button @click="revealComments" class="btn btn-danger">
           Comments ↓
         </button>
@@ -33,9 +33,7 @@
         </button>
       </div>
       <div hidden id="comments" class="row">
-        <div class="col-12">
-          <CommentComponent v-for="comment in state.comments" :key="comment.blog" :comment-prop="comment" />
-        </div>
+        <CommentComponent v-for="comment in state.comments" :key="comment.blog" :comment-prop="comment" />
         <div class="col-12">
           <form @submit.prevent="createComment" class="from-inline" v-if="state.user.isAuthenticated">
             <div class="form-group">

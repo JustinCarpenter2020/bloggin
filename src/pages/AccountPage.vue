@@ -89,7 +89,7 @@ export default {
     })
     // onMounted(async() => {
     //   try {
-    //     await postService.getPosts()
+    //     await postService.getMyBlogs()
     //   } catch (error) {
     //     logger.error(error)
     //   }
@@ -109,25 +109,6 @@ export default {
     }
   }
 }
-
-//   setup() {
-//     const router = useRouter()
-//      cosnt state = reactive({
-//       newBlog: {}
-//     })
-//     return {
-//       state,
-//       account: computed(() => AppState.account),
-//       async createBlog() {
-//         try {
-//           await blogService.createBlog(state.newBlog)
-//         } catch (error) {
-//           logger.error(error)
-//         }
-//       }
-//     }
-//   }
-// }
 </script>
 
 <style scoped>

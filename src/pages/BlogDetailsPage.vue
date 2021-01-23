@@ -101,6 +101,7 @@ export default {
         try {
           console.log(state.newComment)
           blogService.createComment(state.newComment)
+          state.newComment = { blog: route.params.id }
         } catch (error) {
           logger.error(error)
         }

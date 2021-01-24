@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 text-center divide pb-5">
+      <div class="col-12 text-center divide py-5 mt-4">
         <button @click="revealComments" class="btn btn-danger">
           Comments ↓
         </button>

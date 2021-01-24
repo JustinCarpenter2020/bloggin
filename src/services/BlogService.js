@@ -1,25 +1,22 @@
 
 import { AppState } from '../AppState'
 import { api } from '../services/AxiosService'
-import { logger } from '../utils/Logger'
+// import { logger } from '../utils/Logger'
 
 class BlogService {
-  async getBlogs() {
+  async getBlogs(id) {
     const res = await api.get('api/blogs')
     AppState.blogs = res.data
-    console.log(res.data)
   }
 
   async getOne(id) {
     const res = await api.get('api/blogs/' + id)
     AppState.activeBlog = res.data
-    console.log(res.data)
   }
 
   async getComments(id) {
     const res = await api.get('api/blogs/' + id + '/comments')
     AppState.comments = res.data
-    console.log(res.data)
   }
 
   revealComments() {
@@ -50,8 +47,8 @@ class BlogService {
     this.getComments(commentData.blog)
   }
 
-  async editComment(id, commentData) {
-    logger.log(id)
+  async editComment(id, newBody) {
+    const commentData = { body: newBody }
     const res = await api.put('api/comments/' + id, commentData)
     const commId = AppState.comments.findIndex(c => c.id === id)
     AppState.comments.splice(commId, 1, res.data)

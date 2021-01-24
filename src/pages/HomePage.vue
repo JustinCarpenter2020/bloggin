@@ -1,13 +1,6 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column container-fluid">
     <div class="row">
-      <div class="col-xs-12">
-        <div class="hero-image" id="hero-image">
-          <img src="https://images.unsplash.com/photo-1611094607507-8c8173e5cf33?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" />
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-12">
       </div>
     </div>
@@ -34,7 +27,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        await blogService.getBlogs()
+        await blogService.getBlogs(state.user.id)
       } catch (error) {
         logger.error(error)
       }
@@ -57,12 +50,6 @@ export default {
  background-color: #000000;
 background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);;
 
-.hero-image {
-  width: 100vw;
-  position: relative;
-    width: 100%;
-  display: block;
-}
 }
 
 </style>

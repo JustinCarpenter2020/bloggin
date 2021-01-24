@@ -18,7 +18,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div @click="deleteComment" class="dropdown-item clicks" href="#">Delete Comment</div>
-                <div class="dropdown-item clicks" href="#" data-toggle="modal" data-target="#exampleModalCenter">Edit Comment</div>
+                <div @click="commentProp.id" class="dropdown-item clicks" href="#" data-toggle="modal" data-target="#exampleModalCenter">Edit Comment</div>
               </div>
             </div>
           </span>

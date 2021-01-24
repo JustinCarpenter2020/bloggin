@@ -23,7 +23,7 @@
           <div class="form-group">
             <label for=""></label>
             <input type="text"
-                   class="form-control"
+                   class="form-control put"
                    name="Blog title"
                    v-model="state.newBlog.title"
                    id="title"
@@ -34,7 +34,7 @@
           <div class="form-group">
             <label for=""></label>
             <input type="text"
-                   class="form-control"
+                   class="form-control put"
                    name="img"
                    v-model="state.newBlog.imgUrl"
                    id="img"
@@ -45,7 +45,7 @@
           <div class="form-group">
             <label for=""></label>
             <input type="text"
-                   class="form-control"
+                   class="form-control body"
                    name="body"
                    v-model="state.newBlog.body"
                    id="body"
@@ -56,7 +56,7 @@
           <div class="form-group">
             <label for=""></label>
             <input type="text"
-                   class="form-control"
+                   class="form-control put"
                    name="tags"
                    id="tags"
                    v-model="state.newBlog.tags"
@@ -64,7 +64,7 @@
                    placeholder="Tags?"
             >
           </div>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-success mb-3">
             Create New Blog
           </button>
         </form>
@@ -82,15 +82,16 @@ import { blogService } from '../services/BlogService'
 
 export default {
   name: 'Account',
-  setup() {
+  setup(props) {
     // const route = useRoute
     const state = reactive({
-      blogs: computed(() => AppState.blogs),
+      myBlogs: computed(() => AppState.myBlogs),
+      account: computed(() => AppState.account),
       newBlog: {}
     })
     // onMounted(async() => {
     //   try {
-    //     await postService.getMyBlogs()
+    //     await blogService.myBlogs(state.account.id)
     //   } catch (error) {
     //     logger.error(error)
     //   }
@@ -100,7 +101,6 @@ export default {
       account: computed(() => AppState.account),
       async createBlog() {
         try {
-          console.log(state.newBlog)
           await blogService.createBlog(state.newBlog)
           state.newBlog = {}
         } catch (error) {
@@ -117,8 +117,21 @@ img {
   max-width: 100px;
   border-radius: 50%;
 }
-</style>
 
-  // <h1>Welcome {{ account.name }}</h1>
-  //       <img class="rounded" :src="account.picture" alt="" />
-  //       <p>{{ account.email }}</p>
+.body{
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+.put{
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+</style>

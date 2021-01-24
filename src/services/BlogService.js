@@ -1,6 +1,7 @@
 
 import { AppState } from '../AppState'
 import { api } from '../services/AxiosService'
+import { logger } from '../utils/Logger'
 
 class BlogService {
   async getBlogs() {
@@ -47,6 +48,13 @@ class BlogService {
     const res = await api.post('api/comments/', commentData)
     AppState.comments.push(res.data)
     this.getComments(commentData.blog)
+  }
+
+  async editComment(id, commentData) {
+    logger.log(id)
+    const res = await api.put('api/comments/' + id, commentData)
+    const commId = AppState.comments.findIndex(c => c.id === id)
+    AppState.comments.splice(commId, 1, res.data)
   }
 
   async deleteComment(id) {

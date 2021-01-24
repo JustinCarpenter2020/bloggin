@@ -5,7 +5,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col text-center text-warning">
+      <div class="col text-center text-dark">
         <h1 class="pt-3">
           <b>{{ blog.title }}</b>
         </h1>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="row pt-3">
-      <div class="col-12 text-center text-warning">
+      <div class="col-12 text-center text-dark">
         <h5>
           {{ blog.body }}
         </h5>

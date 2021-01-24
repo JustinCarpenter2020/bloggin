@@ -4,8 +4,8 @@
       <div class="col-12">
       </div>
     </div>
-    <h1 class="text-success">
-      Today's Blogs:
+    <h1 class="text-light pt-4">
+      <u>Today's Blogs:</u>
     </h1>
     <div class="row m-5">
       <BlogComponenet v-for="blog in state.blogs" :key="blog.id" :blog-prop="blog" />
@@ -47,5 +47,7 @@ export default {
     height: 200px;
     width: 200px;
   }
+ background-color: #000000;
+background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);;
 }
 </style>

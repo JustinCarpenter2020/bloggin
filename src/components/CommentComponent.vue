@@ -18,7 +18,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div @click="deleteComment" class="dropdown-item clicks" href="#">Delete Comment</div>
-                <div class="dropdown-item clicks" href="#" data-toggle="modal" data-target="#exampleModalCenter">Edit Comment</div>
+                <div class="dropdown-item clicks" href="#" data-toggle="modal" :data-target="'#modal-'+ commentProp.id">Edit Comment</div>
               </div>
             </div>
           </span>
@@ -30,13 +30,13 @@
     </div>
   </div>
   <div class="modal fade"
-       id="exampleModalCenter"
+       :id="'modal-'+ commentProp.id"
        tabindex="-1"
        role="dialog"
        aria-labelledby="exampleModalCenterTitle"
        aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document" id="modal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">
@@ -97,6 +97,7 @@ export default {
           logger.error(error)
         }
       },
+      // review the id in edit comment doesn't work
       async editComment() {
         try {
           blogService.editComment(state.editComment)

@@ -1,6 +1,6 @@
 <template>
   <section class="bgimage darken">
-    <div class="container-fluid">
+    <div class="container-fluid h-100">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="typewriter">
@@ -12,6 +12,9 @@
             <a href="#" class="btn btn-primary btn-large">All Blogs »</a>
           </p>
         </div>
+      </div>
+      <div class="row position-absolute" style="bottom: 7rem;">
+        asdfjkaksjdhfjaskdhfasjkdhfajksdhf
       </div>
     </div>
   </section>

@@ -70,7 +70,8 @@ export default {
       loaded: false,
       comments: computed(() => AppState.comments),
       newComment: { blog: route.params.id },
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
     onMounted(async() => {
       try {

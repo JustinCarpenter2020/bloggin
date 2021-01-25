@@ -18,7 +18,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div @click="deleteComment" class="dropdown-item clicks" href="#">Delete Comment</div>
-                <div @click="commentProp.id" class="dropdown-item clicks" href="#" data-toggle="modal" data-target="#exampleModalCenter">Edit Comment</div>
+                <div class="dropdown-item clicks" href="#" data-toggle="modal" data-target="#exampleModalCenter">Edit Comment</div>
               </div>
             </div>
           </span>
@@ -36,7 +36,7 @@
        aria-labelledby="exampleModalCenterTitle"
        aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" id="modal">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">
@@ -59,7 +59,7 @@
                      placeholder="New Comment"
               >
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" @click="data-dismiss" class="btn btn-primary">
               Save changes
             </button>
           </form>
@@ -85,7 +85,7 @@ export default {
   setup(props) {
     const state = reactive({
       account: computed(() => AppState.account),
-      editComment: {}
+      editComment: { id: props.commentProp.id }
     })
     return {
       state,
@@ -99,7 +99,8 @@ export default {
       },
       async editComment() {
         try {
-          blogService.editComment(props.commentProp.id, state.editComment)
+          blogService.editComment(state.editComment)
+          state.editComment = { id: props.commentProp.id }
         } catch (error) {
           logger.error(error)
         }
@@ -121,6 +122,7 @@ export default {
 }
 .border{
   border-width: 10px;
+  width: 100%;
 }
 
 .avatar{

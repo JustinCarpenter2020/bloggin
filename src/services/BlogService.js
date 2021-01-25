@@ -47,10 +47,10 @@ class BlogService {
     this.getComments(commentData.blog)
   }
 
-  async editComment(id, newBody) {
-    const commentData = { body: newBody }
-    const res = await api.put('api/comments/' + id, commentData)
-    const commId = AppState.comments.findIndex(c => c.id === id)
+  async editComment(newBody) {
+    const body = { body: newBody.body }
+    const res = await api.put('api/comments/' + newBody.id, body)
+    const commId = AppState.comments.findIndex(c => c.id === newBody.id)
     AppState.comments.splice(commId, 1, res.data)
   }
 
